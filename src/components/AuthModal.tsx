@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UserPlus, LogIn, Building2, Users, TrendingUp, Shield, Globe, Zap } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { OTPVerificationModal } from "./OTPVerificationModal";
 
 interface AuthModalProps {
   open: boolean;
@@ -16,7 +15,6 @@ interface AuthModalProps {
 export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   const { toast } = useToast();
   const [mode, setMode] = useState<"signup" | "login">("signup");
-  const [showOTP, setShowOTP] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -78,9 +76,10 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
       setIsLoading(false);
       toast({
         title: mode === "signup" ? "Account Created Successfully!" : "Login Successful!",
-        description: "Please check your email for verification.",
+        description: mode === "signup" ? "Welcome to Amara Client!" : "Welcome back to Amara Client!",
       });
-      setShowOTP(true);
+      onOpenChange(false);
+      resetForm();
     }, 1500);
   };
 
@@ -105,23 +104,9 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   const handleOpenChange = (newOpen: boolean) => {
     if (!newOpen) {
       resetForm();
-      setShowOTP(false);
     }
     onOpenChange(newOpen);
   };
-
-  if (showOTP) {
-    return (
-      <OTPVerificationModal
-        open={open}
-        onOpenChange={handleOpenChange}
-        email={formData.email}
-        phone={formData.phone}
-        isLogin={mode === "login"}
-        onBack={() => setShowOTP(false)}
-      />
-    );
-  }
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
