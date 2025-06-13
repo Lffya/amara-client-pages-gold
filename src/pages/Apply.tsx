@@ -2,10 +2,13 @@
 import { Navigation } from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from "react-router-dom";
 import { Building2, Users, TrendingUp, Shield, Globe, Zap, UserPlus, Check } from "lucide-react";
+import { useState } from "react";
+import { AuthModal } from "@/components/AuthModal";
 
 const Apply = () => {
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
   const clientLogos = [
     { name: "Global Finance", icon: <TrendingUp className="h-8 w-8 text-amber-600" /> },
     { name: "Secure Holdings", icon: <Shield className="h-8 w-8 text-amber-600" /> },
@@ -39,11 +42,13 @@ const Apply = () => {
             Join thousands of successful investors who trust Amara Client.
           </p>
           
-          <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-700 text-black font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-            <Link to="/signup">
-              <UserPlus className="mr-2 h-6 w-6" />
-              Get Started Now
-            </Link>
+          <Button 
+            onClick={() => setShowAuthModal(true)}
+            size="lg" 
+            className="bg-amber-600 hover:bg-amber-700 text-black font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          >
+            <UserPlus className="mr-2 h-6 w-6" />
+            Get Started Now
           </Button>
         </div>
 
@@ -93,21 +98,22 @@ const Apply = () => {
               </p>
               
               <div className="space-y-4">
-                <Button asChild className="w-full bg-amber-600 hover:bg-amber-700 text-black font-semibold py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                  <Link to="/signup">
-                    <UserPlus className="mr-2 h-5 w-5" />
-                    Create Account
-                  </Link>
+                <Button 
+                  onClick={() => setShowAuthModal(true)}
+                  className="w-full bg-amber-600 hover:bg-amber-700 text-black font-semibold py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <UserPlus className="mr-2 h-5 w-5" />
+                  Create Account
                 </Button>
                 
                 <p className="text-sm text-muted-foreground">
                   Already have an account?{" "}
-                  <Link 
-                    to="/login" 
+                  <button 
+                    onClick={() => setShowAuthModal(true)}
                     className="text-amber-600 hover:text-amber-700 font-medium hover:underline"
                   >
                     Sign In
-                  </Link>
+                  </button>
                 </p>
               </div>
             </CardContent>
@@ -130,6 +136,8 @@ const Apply = () => {
           </div>
         </div>
       </main>
+
+      <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
     </div>
   );
 };
