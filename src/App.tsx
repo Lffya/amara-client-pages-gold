@@ -9,6 +9,9 @@ import Index from "./pages/Index";
 import Financial from "./pages/Financial";
 import Meetings from "./pages/Meetings";
 import Notices from "./pages/Notices";
+import Apply from "./pages/Apply";
+import Login from "./pages/Login";
+import OTPVerification from "./pages/OTPVerification";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +28,9 @@ const App = () => (
             <Route path="/financial" element={<Financial />} />
             <Route path="/meetings" element={<Meetings />} />
             <Route path="/notices" element={<Notices />} />
+            <Route path="/apply" element={<Apply />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/otp-verification" element={<OTPVerification />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

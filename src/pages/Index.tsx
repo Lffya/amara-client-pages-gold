@@ -3,7 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Users, Bell, TrendingUp } from "lucide-react";
+import { FileText, Users, Bell, TrendingUp, UserPlus } from "lucide-react";
 
 const Index = () => {
   const features = [
@@ -40,7 +40,7 @@ const Index = () => {
             Your comprehensive platform for financial transparency, stakeholder communications, and regulatory compliance. 
             Stay informed with our latest reports, meeting updates, and official notices.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-700 text-black">
               <Link to="/financial">
                 <TrendingUp className="mr-2 h-5 w-5" />
@@ -51,6 +51,22 @@ const Index = () => {
               <Link to="/meetings">
                 <Users className="mr-2 h-5 w-5" />
                 Shareholder Meetings
+              </Link>
+            </Button>
+          </div>
+          
+          {/* Apply Now CTA Section */}
+          <div className="bg-gradient-to-r from-amber-50 to-amber-100 dark:from-amber-950/20 dark:to-amber-900/20 rounded-2xl p-8 mb-12 border border-amber-200 dark:border-amber-800">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+              Ready to Join Our Community?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Get exclusive access to investor updates, priority notifications, and personalized financial insights.
+            </p>
+            <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-700 text-black font-semibold px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <Link to="/apply">
+                <UserPlus className="mr-2 h-6 w-6" />
+                Apply Now
               </Link>
             </Button>
           </div>
